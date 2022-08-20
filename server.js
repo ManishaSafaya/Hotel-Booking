@@ -15,6 +15,9 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
+//rest endpoints
+const searchHotelRoom = require("./routes/searchHotelRoom.route");
+app.use("/api/searchHotelRoom", searchHotelRoom);
 
 //creating Mongo DB connection
 mongoose.Promise = global.Promise;
