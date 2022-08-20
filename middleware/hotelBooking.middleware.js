@@ -92,7 +92,36 @@ const bookHotelRoom = async (req) => {
     return bookHotelRoomRes;
 }
 
+const manageHotelRoom = async (req) => {
+    let manageHotelRoomRes;
+    let room = req.body;
+    log.info("manageHotelRoom room ", room);
+    //change Room availibilty to true/false
+    let roomBookingUpdate = await Rooms.updateRoom({ roomNumId: room?.roomNum, isAvailable: room?.isAvailable });
+    if (roomBookingUpdate) {
+        manageHotelRoomRes = {
+            content: {
+                response: `roomNum ${room?.roomNum} availibility updation successfull!`
+            },
+            statusCode: 200
+        };
+    }
+    else {
+        manageHotelRoomRes = {
+            content: {
+                error: {
+                    code: "HB206MRF",
+                    description: `roomNum ${room?.roomNum} availibility updation failed!`
+                }
+            },
+            statusCode: 206
+        };
+    }
+    return manageHotelRoomRes;
+}
+
 module.exports = {
     searchHotelRoom,
-    bookHotelRoom
+    bookHotelRoom,
+    manageHotelRoom
 };

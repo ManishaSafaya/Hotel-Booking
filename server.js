@@ -22,6 +22,9 @@ app.use("/api/searchHotelRoom", searchHotelRoom);
 const bookHotelRoom = require("./routes/bookHotelRoom.route");
 app.use("/api/bookHotelRoom", bookHotelRoom);
 
+const  manageHotelRoom = require("./routes/manageHotelRoom.route");
+app.use("/api/manageHotelRoom",  manageHotelRoom);
+
 //creating Mongo DB connection
 mongoose.Promise = global.Promise;
 mongoose.connect(

@@ -12,6 +12,12 @@ const schemas = {
       email: Joi.string().email().required(),
       roomNum: Joi.string().required()
     }
+  },
+  manageHotelRoom:{
+    payload:{
+      roomNum: Joi.string().required(),
+      isAvailable: Joi.boolean().valid(true, false).required()
+    }
   }
 };
 

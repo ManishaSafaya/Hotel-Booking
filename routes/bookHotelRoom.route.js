@@ -6,7 +6,7 @@ const schemas = require('../validator/schemas');
 const validator = require('../validator/validator');
 
 router.post(
-    "/", validator(schemas.bookHotelRoom.payload), bookHotelRoom_controller.bookHotelRoom
+    "/", validator(schemas.bookHotelRoom.payload, 'body'), bookHotelRoom_controller.bookHotelRoom
 );
 
 module.exports = router;

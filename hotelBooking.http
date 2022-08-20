@@ -11,3 +11,13 @@ Content-Type: application/json
       "email": "test@gmail.com",
       "roomNum": "102"
 }
+
+###
+
+patch {{hostname}}/api/manageHotelRoom
+Content-Type: application/json
+
+{
+      "roomNum": "101",
+      "isAvailable": true
+}

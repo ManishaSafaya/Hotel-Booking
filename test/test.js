@@ -42,6 +42,24 @@ describe('hotelBooking services', function () {
                 });
         });
     });
+
+    describe('manageHotelRoom services', function () {
+        it('manageHotelRoom success scenario: ', function (done) {
+            chai.request(app)
+                .patch('/api/manageHotelRoom')
+                .send({                    
+                    "roomNum": "101",
+                    "isAvailable": true
+                })
+                .then(function (res) {
+                    done();
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        });
+    });
+
     after(function () {
         process.exit(0);
     });
