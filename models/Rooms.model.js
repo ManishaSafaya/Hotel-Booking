@@ -29,7 +29,7 @@ var RoomsSchema = new Schema(
   { strict: false }
 );
 
-Rooms = mongoose.model("Rooms", RoomsSchema, "Rooms");
+const Rooms = mongoose.model("Rooms", RoomsSchema, "Rooms");
 
 const getRooms = async () =>
   new Promise((resolve, reject) => {
@@ -38,7 +38,30 @@ const getRooms = async () =>
       .catch((err) => reject(err));
   });
 
+const getRoom = async (roomNum, isAvailable) =>
+  new Promise((resolve, reject) => {
+    Rooms.findOne({ roomNum: roomNum, isAvailable: isAvailable }, { _id: 0 })
+      .then((client) => resolve(client))
+      .catch((err) => reject(err));
+  });
+
+const updateRoom = async ({ roomNumId, ...rest } = {}) =>
+  new Promise((resolve, reject) => {
+    Rooms.updateOne(
+      { roomNum: roomNumId },
+      {
+        $set: {
+          ...rest
+        }
+      },
+      { upsert: true }
+    ).then((client) => resolve(client))
+      .catch((err) => reject(err));
+  });
+
 module.exports = {
   Rooms,
-  getRooms
+  getRooms,
+  getRoom,
+  updateRoom
 }

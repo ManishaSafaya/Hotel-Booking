@@ -1,1 +1,13 @@
-get http://localhost:3000/api/searchHotelRoom
+@hostname = http://localhost:3000
+get {{hostname}}/api/searchHotelRoom
+
+###
+
+post {{hostname}}/api/bookHotelRoom
+Content-Type: application/json
+
+{
+      "name": "test",
+      "email": "test@gmail.com",
+      "roomNum": "102"
+}

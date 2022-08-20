@@ -14,20 +14,34 @@ const app = require('../server');
 describe('hotelBooking services', function () {
     it('searchHotelRoom success scenario: ', function (done) {
         chai.request(app)
-            .post('api/searchHotelRoom')
+            .get('/api/searchHotelRoom')
             .query()
             .end(function (err, res) {
                 done();
             });
 
-});
+    });
 
+    describe('bookHotelRoom services', function () {
+        it('bookHotelRoom success scenario: ', function (done) {
+            chai.request(app)
+                .post('/api/bookHotelRoom')
+                .send({
+                    "name": "test",
+                    "email": "test@gmail.com",
+                    "roomNum": "101"
+                })
+                .end(function (err, res) {
+                    done();
+                });
 
-after(function () {
-        process.exit(0);
-});
+        });
+    });
+    after(function () {
+            process.exit(0);
+    });
 
-});
+    });
 
 
 
