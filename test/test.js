@@ -15,9 +15,12 @@ describe('hotelBooking services', function () {
     it('searchHotelRoom success scenario: ', function (done) {
         chai.request(app)
             .get('/api/searchHotelRoom')
-            .query()
-            .end(function (err, res) {
+            .query({})
+            .then(function (res) {
                 done();
+            })
+            .catch(function (err) {
+                console.log(err);
             });
 
     });
@@ -31,17 +34,15 @@ describe('hotelBooking services', function () {
                     "email": "test@gmail.com",
                     "roomNum": "101"
                 })
-                .end(function (err, res) {
+                .then(function (res) {
                     done();
+                })
+                .catch(function (err) {
+                    console.log(err);
                 });
-
         });
     });
     after(function () {
-            process.exit(0);
+        process.exit(0);
     });
-
-    });
-
-
-
+});

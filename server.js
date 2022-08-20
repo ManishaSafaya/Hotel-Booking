@@ -35,3 +35,4 @@ mongoose.connect(
 app.listen(config.port, () =>
 	log.info(`hotelBooking App listening on port ${config.port}!`)
 );
+module.exports = app;
